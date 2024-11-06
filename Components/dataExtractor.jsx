@@ -57,8 +57,8 @@ const GetData = (data) => {
 
     // Functions to get today's workout statistics
     const todayPlankData = data.slice(-1).map(entry => ({
-        accuracy: entry.accuracy['plank_accuracy'] || 0,
-        e_time: entry.e_time['plank_time'] || 0
+        accuracy: entry.accuracy['Plank_accuracy'] || 0,
+        e_time: entry.e_time['Plank_time'] || 0
     }))[0];
 
     const todayPushUpData = data.slice(-1).map(entry => ({
