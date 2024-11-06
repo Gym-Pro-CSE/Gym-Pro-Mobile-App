@@ -113,7 +113,7 @@ const Squat_Model = () => {
   const frameCount = async (pose  ) => {
     if (pose === 'correct_low' || pose === 'correct_high') {
         correctFrameRef.current += 1;
-    } else if (pose === 'incorrect_backward' || pose === 'incorrect_forward') { 
+    } else if (pose === 'incorrect' || pose === 'incorrect') { 
         incorrectFrameRef.current += 1;
     }
     }
@@ -274,8 +274,8 @@ const handleWorkoutData = async (jsonObject) => {
                     <View style={alertBoxStyle}>
                         {excercisePose === 'correct_low' && <Text style={alertTextStyle}>Good Posture</Text>}
                         {excercisePose === 'correct_high' && <Text style={alertTextStyle}>Good Posture</Text>}
-                        {excercisePose === 'incorrect_forward' && (
-                            <Text style={alertTextStyle}>Keep a neutral spine. Restrict the movement of the knees.</Text>
+                        {excercisePose === 'incorrect' && (
+                            <Text style={alertTextStyle}>Keep your torso Straight as much as possible.</Text>
                         )}
                     </View>
                 </View>

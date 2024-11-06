@@ -108,7 +108,7 @@ const LatPullDown_Model = () => {
         let shoulder_x = (leftShoulder.x + rightShoulder.x) / 2;
         let shoulder_y = (leftShoulder.y + rightShoulder.y) / 2;
 
-        torso_straightness = (shoulder_y - hip_y) / calculateDistance_2(shoulder_x, shoulder_y, hip_x, hip_y);
+        torso_straightness = (shoulder_y - hip_y) / calculateDistance_2(shoulder_x, shoulder_y, hip_x, hip_y)*10;
         arms_straightness = (wrist_y - shoulder_y) / calculateDistance_2(wrist_x, wrist_y, shoulder_x, shoulder_y);
      
         return [leftElbowAngle, rightElbowAngle, leftShoulderAngle, rightShoulderAngle, leftHipAngle, rightHipAngle, torso_straightness, arms_straightness];
@@ -134,7 +134,7 @@ const LatPullDown_Model = () => {
     const frameCount = async (pose) => {
         if (pose === 'correct_low' || pose === 'correct_high') {
             correctFrameRef.current += 1;
-        } else if (pose === 'incorrect_backward' || pose === 'incorrect_forward') { 
+        } else if (pose === 'incorrect' || pose === 'incorrect') { 
             incorrectFrameRef.current += 1;
         }
     }
@@ -161,15 +161,14 @@ const LatPullDown_Model = () => {
         const incorrectFrame = incorrectFrameRef.current;
         const accuracy = correctFrame / (correctFrame + incorrectFrame)*100;
         const [date , last_modified] = convertToUTC530()
-        console.log("Time: ", time, " Reps: ", repCount, " Correct Frames: ", correctFrame, " Incorrect Frames: ", incorrectFrame, " Accuracy: ", accuracy,"date : ",date , "last_modified : ",last_modified);
         const jsonObject = { time: time, reps: repCount,  accuracy: accuracy , e_name:"lat pull down" , date:date , last_modified:last_modified};
         handleWorkoutData(jsonObject);
         navigator.goBack();
     };
 
     const handleWorkoutData = async (jsonObject) => {
-        
         responseArray = {'workouts':[jsonObject]}
+        
         try{
             const token = await AsyncStorage.getItem("jwtToken");
             if (token) {

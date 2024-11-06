@@ -66,7 +66,7 @@ const PoseApp = () => {
 
   const checkTokenValidity = async (token) =>{
     console.log("sending a post request to validate the token");
-    const res = await axios.post("http://192.168.1.148:4000/startup",{},{headers:{'authorization': `Bearer ${token}`}});
+    const res = await axios.post("http://43.205.242.48/startup",{},{headers:{'authorization': `Bearer ${token}`}});
     console.log("resonse came for the post request");
     console.log("response: " , res.data);
     if (res.data.token_Status === true){
@@ -109,25 +109,23 @@ const PoseApp = () => {
     return (
       <NavigationContainer>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
-          {isNewUser ? (
-            <Stack.Screen
-              name="SignUpScreen"
-              component={() => <SignUpScreen onSignUp={onSignUp} onSwitchToSignIn={onSwitchToSignIn} />}
-            />
-          ) : (
-            <Stack.Screen name="LoginForm">
-              {() => <LoginForm onSignIn={onSignIn} onSwitchToSignUp={onSwitchToSignUp} />}
-            </Stack.Screen>
-          )}
+        {isNewUser ? (
+          // Directly pass the component and handle props via a wrapper or render
           <Stack.Screen
-            name="ForgotPassword"
-            component={ForgotPassword}
+            name="SignUpScreen"
+            children={() => <SignUpScreen onSignUp={onSignUp} onSwitchToSignIn={onSwitchToSignIn} />}
           />
+        ) : (
+          // Similarly pass the LoginForm using the 'children' prop
           <Stack.Screen
-            name="ConfirmOtp"
-            component={ConfirmOtp}
+            name="LoginForm"
+            children={() => <LoginForm onSignIn={onSignIn} onSwitchToSignUp={onSwitchToSignUp} />}
           />
+        )}
+        <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
+        <Stack.Screen name="ConfirmOtp" component={ConfirmOtp} />
         </Stack.Navigator>
+
       </NavigationContainer>
     );
   }

@@ -8,6 +8,18 @@ const GetData = (data) => {
         return {};
     }
 
+    console.log(data);
+
+    const getFormattedDateLabel = (dateString) => {
+        const monthNames = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+        
+        const date = new Date(dateString);
+        const month = monthNames[date.getMonth()];
+        const day = date.getDate().toString().padStart(2, '0'); // Ensures two digits for day
+    
+        return `${month} ${day}`; // Format as "MMM DD"
+    };
+
     // Functions to get the last week, month, and year statistics
     const lastWeekData = data.slice(-7).map((entry, index) => {
         const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -87,28 +99,28 @@ const GetData = (data) => {
 
     // last month individual workout accuracy
     const lastMonthPlankAccuracy = data.slice(-30).map(entry => ({
-        label: entry.date,
+        label: getFormattedDateLabel(entry.date),
         value: entry.accuracy['Plank_accuracy'] || 0
     }));
 
     const lastMonthBicepCurlsAccuracy = data.slice(-30).map(entry => ({
-        label: entry.date,
+        label: getFormattedDateLabel(entry.date),
         value: entry.accuracy['bicep curls_accuracy'] || 0
     }));
 
     const lastMonthSquatAccuracy = data.slice(-30).map(entry => ({
-        label: entry.date,
+        label: getFormattedDateLabel(entry.date),
         value: entry.accuracy['squat_accuracy'] || 0
     }));
 
     const lastMonthLatPullDownAccuracy = data.slice(-30).map(entry => ({
-        label: entry.date,
+        label: getFormattedDateLabel(entry.date),
         value: entry.accuracy['lat pull down_accuracy'] || 0
     }));
 
     const lastMonthPushUpAccuracy = data.slice(-30).map(entry => ({
-        label: entry.date,
-        value: entry.accuracy['push up_accuracy'] || 0
+        label: getFormattedDateLabel(entry.date),
+        value: entry.accuracy['pushup_accuracy'] || 0
     }));
 
     //console.log(lastYearMonthlyAverageData);

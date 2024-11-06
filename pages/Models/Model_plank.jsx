@@ -14,8 +14,6 @@ const Plank_Model = () => {
     const [isModelLoaded, setIsModelLoaded] = useState(false);
     const [time, setTime] = useState(0);
     const timerRef = useRef(null);
-    const poseFrameCountRef = useRef(0); // Ref to track frames in the same pose immediately
-    const repCountRef = useRef(0); // Ref to track repCount immediately
     const correctFrameRef = useRef(0); // Ref to track correct frames immediately
     const incorrectFrameRef = useRef(0); // Ref to track incorrect frames immediately
     const isWorkoutStarted = useRef(false);
@@ -155,12 +153,8 @@ const Plank_Model = () => {
     const date = new Date();
 
     // Calculate offset for UTC+05:30 (5.5 hours or 330 minutes)
-    const offsetInMinutes = 330; // 5 hours 30 minutes
-
-    // Adjust the date by the offset in minutes
+    const offsetInMinutes = 330; 
     const utc530Date = new Date(date.getTime() + offsetInMinutes * 60000);
-    // const extract_date = utc530Date.toISOString().replace('T', ' ').substr(0, 19);
-    // const dateDMY = extract_date.split()[0];
     const dateDMY = utc530Date.toISOString().split('T')[0];
 
     return [dateDMY,utc530Date]; // Format the date and time
@@ -195,6 +189,10 @@ const changeWorkoutStatus = () => {
 };
   
     const handleLandmarksDetected = async (keypoints) => {
+      if (!isWorkoutStarted.current) {
+        return;
+      }
+        else{
       try {
         const [knee, hip, shoulder, elbow, height] = inputTensorData(keypoints);
 
@@ -226,6 +224,7 @@ const changeWorkoutStatus = () => {
         console.error("Error during prediction:", error);
       };
     };
+  };
     if (!isModelLoaded) {
       return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -254,7 +253,7 @@ const changeWorkoutStatus = () => {
           <View style={styles.centeredTopView}>
             <View style={alertBoxStyle}>
                     {poseType === 'correct' && (<Text style={alertTextStyle}>Good Posture</Text>)}
-                    {poseType === 'incorrect' && (<Text style={alertTextStyle}>Back is arched. Keep your body straight.</Text>)}
+                    {poseType === 'incorrect' && (<Text style={alertTextStyle}>Your back is arched. Keep the body straight.</Text>)}
             </View>
           </View>
           <View style={styles.stats}>

@@ -12,7 +12,7 @@ const WorkoutHistory = () => {
     const [loading, setLoading] = useState(true); // Loading state
 
     const fetchWorkouts = async (token) => {
-        const res = await axios.get("http://192.168.8.123:4000/workouts", { headers: { 'authorization': `Bearer ${token}` } });
+        const res = await axios.get("http://43.205.242.48/workouts", { headers: { 'authorization': `Bearer ${token}` } });
         const data = res.data;
         if (data.workouts) {
             return data.workouts;
@@ -114,7 +114,7 @@ const WorkoutHistory = () => {
                     </View>
                 </ScrollView>
 
-                <Text style={styles.subTopicText}>Progress of Last,</Text>
+                <Text style={styles.subTopicText}>Progress of throughout last,</Text>
                 <View style={styles.switchContainer}>
                     <View style={[
                         styles.switchText,
@@ -158,7 +158,7 @@ const WorkoutHistory = () => {
                 </View>
 
                 <View style={styles.graphContainer}>
-                    <Graph data={data} spacing={spacing} />
+                    <Graph data={data} spacing={spacing} xAxisTitle="Date/Month" yAxisTitle="Time (s)"/>
                 </View>
 
                 {/* Second Graph with 5 switches */}
@@ -234,7 +234,7 @@ const WorkoutHistory = () => {
                 </View>
 
                 <View style={styles.graphContainer}>
-                    <Graph data={secondData} />
+                    <Graph data={secondData}  max={100} xAxisTitle="Date" yAxisTitle="Accuracy"/>
                 </View>
             </View>
         </ScrollView>
@@ -271,6 +271,7 @@ const styles = StyleSheet.create({
     },
     graphContainer: {
         marginLeft: 10,
+        marginTop: -30
     },
     switchContainer: {
         flexDirection: 'row',

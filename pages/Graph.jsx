@@ -2,11 +2,9 @@ import React from "react";
 import { ScrollView, View, Text , StyleSheet , Dimensions} from "react-native";
 import { BarChart } from "react-native-gifted-charts";
 
-const Graph = ({data, title, spacing}) => {
+const Graph = ({data, title, spacing, max=undefined, xAxisTitle="Undefined", yAxisTitle="Undefined"}) => {
     console.log("Graph Loaded");
   const graphWidth = Dimensions.get('window').width;
-
-  
 
   const renderTooltip = (item) => {
     return (
@@ -20,7 +18,13 @@ const Graph = ({data, title, spacing}) => {
   return (
     <ScrollView contentContainerStyle={{backgroundColor: '#232323' , width:graphWidth*0.959, borderRadius:4, borderWidth:0 , padding:5 , margin:5}}>
       <Text style={styles.subTopicText}>{title}</Text>
-      <View>
+      <View style={styles.chartContainer}>
+
+      {yAxisTitle && (
+          <Text style={styles.yAxisTitle}>y axis = {yAxisTitle}</Text>
+        )}
+      <Text style={styles.subTopicText}>{title}</Text>
+      <View style={styles.barChart}>
         <BarChart
           data={data}
           barWidth={22}
@@ -35,8 +39,12 @@ const Graph = ({data, title, spacing}) => {
           isAnimated = {true}
           animationDuration={500}
           renderTooltip={renderTooltip}
+          maxValue={max}
         />
       </View>
+      </View>
+      
+        <Text style={styles.xAxisTitle}>x axis = {xAxisTitle}</Text>
     </ScrollView>
   );
 };
@@ -52,6 +60,23 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 12,
   },
+  xAxisTitle: {
+    color: "#555",
+    fontSize: 14,
+    textAlign: "center",
+    marginTop: -10,
+  },
+  yAxisTitle: {
+    color: "#555",
+    fontSize: 14,
+    position: "absolute",
+    left: -50,
+    top: "50%",
+    transform: [{ rotate: "-90deg" }],
+  },
+  barChart:{
+    padding: 20
+  }
 });
 
 export default Graph;

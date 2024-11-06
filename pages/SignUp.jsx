@@ -87,31 +87,7 @@ const SignUpScreen = ({ onSignUp, onSwitchToSignIn, onGoBack }) => {
     setErrors({username:[],password:[],email:[]});
     setUsernameMessege("");
     setOtherError("");
-    // const username_extracted = username.trim().split(/\s+/);
-    // const password_whiteSpace_present = /\s/.test(password);
-    // const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    // if (username_extracted.length > 1){
-    //   setUsernameMessege("Username should be in 1 word!");
-    // }
-    // if (username_extracted)
-    // if(password===""){
-    //   setIsPasswordEmpty(true);
-    // }
-    // else{
-    //   setIsPasswordEmpty(false);
-    // }
-    // if(email===""){
-    //   setIsEmailEmpty(true);
-    // }
-    // else{
-    //   setIsEmailEmpty(false);
-    // }
-    // if(username===""){
-    //   setIsUsernameEmpty(true);
-    // }
-    // else{
-    //   setIsUsernameEmpty(false);
-    // }
+
     try{
       // Call API to get JWT token (mock here)
       const response = await axios.post("http://43.205.242.48/signup", 
@@ -180,7 +156,7 @@ const SignUpScreen = ({ onSignUp, onSwitchToSignIn, onGoBack }) => {
     <SafeAreaView style={styles.container}>
         <View style={styles.header}>
                 <Text style={styles.headerTitle}>Create Account</Text>
-                <Pressable onPress={onGoBack} style={styles.backButton}>
+                <Pressable onPress={onSwitchToSignIn} style={styles.backButton}>
                   <Icons name="arrow-left" size={24} color="#E2F163" />
                 </Pressable>
         </View>
@@ -243,12 +219,6 @@ const SignUpScreen = ({ onSignUp, onSwitchToSignIn, onGoBack }) => {
             <TextInput style={styles.input} placeholder='WEIGHT' value={weight} onChangeText={setWeight} autoCorrect={false}
         autoCapitalize='none'/>
         </View>
-        {/* <View style={styles.rememberView}>
-            <View style={styles.switch}>
-                <Switch  value={click} onValueChange={setClick} trackColor={{true : "green" , false : "gray"}} />
-                <Text style={styles.rememberText}>Remember Me</Text>
-            </View>
-        </View> */}
 
         <View style={styles.buttonView}>
             <Animated.View style={{ transform: [{ scale: buttonScale }] }}>
