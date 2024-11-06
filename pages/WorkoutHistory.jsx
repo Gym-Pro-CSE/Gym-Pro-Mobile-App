@@ -107,10 +107,10 @@ const WorkoutHistory = () => {
                     <View style={styles.progressChartContainer}>
                         {/* Daily components */}
                         <PieChartCard value={todayBicepCurlData.accuracy} title={'Bicep Curls'} reps={todayBicepCurlData.e_reps} time={todayBicepCurlData.e_time} />
-                        <PieChartCard value={todaySquatData.accuracy} title={'Squat'} time={todaySquatData.e_time} />
+                        <PieChartCard value={todaySquatData.accuracy} title={'Squat'} time={todaySquatData.e_time} reps={todaySquatData.e_reps} />
                         <PieChartCard value={todayPushUpData.accuracy} title={'Push Ups'} reps={todayPushUpData.e_reps} time={todayPushUpData.e_time} />
-                        <PieChartCard value={todayPlankData.accuracy} title={'Plank'} time={todayPlankData.e_time} />
                         <PieChartCard value={todayLatPullDownData.accuracy} title={'Pull Down'} reps={todayLatPullDownData.e_reps} time={todayLatPullDownData.e_time} />
+                        <PieChartCard value={todayPlankData.accuracy} title={'Plank'} time={todayPlankData.e_time} />
                     </View>
                 </ScrollView>
 

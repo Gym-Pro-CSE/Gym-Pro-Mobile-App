@@ -88,7 +88,7 @@ const GetData = (data) => {
     // last month individual workout accuracy
     const lastMonthPlankAccuracy = data.slice(-30).map(entry => ({
         label: entry.date,
-        value: entry.accuracy.plank_accuracy || 0
+        value: entry.accuracy['Plank_accuracy'] || 0
     }));
 
     const lastMonthBicepCurlsAccuracy = data.slice(-30).map(entry => ({
