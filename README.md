@@ -1,7 +1,5 @@
 # **GYMPRO - Gym Posture Analysis Mobile Application** 📱💪
 
-![Logo](path/to/logo.png)
-
 **GYMPRO** is a mobile application designed to enhance workout safety and effectiveness by providing real-time feedback on posture. By using machine learning to prevent injuries and track progress, GYMPRO makes fitness accessible, motivating, and data-driven.
 
 ---
