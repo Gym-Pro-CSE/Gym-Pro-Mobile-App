@@ -42,9 +42,9 @@ The goal of GYMPRO is to provide users with instant feedback on their workout fo
 ## **Tech Stack**
 
 - **Frontend**: React Native, JavaScript
-- **Machine Learning**: MoveNet Lightning (SinglePose 256x256)
+- **Machine Learning**: MoveNet Lightning (SinglePose 256x256), TensorflowJS, TFLite
 - **Backend**: REST API
-- **Database**: MongoDB (NoSQL)
+- **Database**: MongoDB
 
 ---
 
@@ -54,15 +54,11 @@ Follow these steps to set up the project on your local machine.
 
 ### **Prerequisites**
 
-- [Node.js](https://nodejs.org/) (version X.X.X)
+- [Node.js](https://nodejs.org/) (version 20.15.1)
 - [React Native CLI](https://reactnative.dev/docs/environment-setup)
 - MongoDB or MongoDB Atlas (for backend)
 
 ### **Installation**
-
-1. **Clone the repo**:
-   ```bash
-   git clone https://github.com/your-username/gympro.git
 
 2. **Install dependencies**
    ```bash
@@ -70,5 +66,6 @@ Follow these steps to set up the project on your local machine.
    yarn install
 
 3. **Run the application**
-    '''bash
-    yarn start
+   '''bash
+   yarn start
+   
