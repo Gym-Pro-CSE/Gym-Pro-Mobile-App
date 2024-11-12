@@ -60,12 +60,11 @@ Follow these steps to set up the project on your local machine.
 
 ### **Installation**
 
-2. **Install dependencies**
+1. **Install dependencies**
    ```bash
    cd gympro
    yarn install
 
-3. **Run the application**
-   '''bash
+2. **Run the application**
+   ```bash
    yarn start
-   
